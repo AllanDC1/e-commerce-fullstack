@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS `full-stack-ecommerce`.`product` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `sku` VARCHAR(255) DEFAULT NULL,
   `name` VARCHAR(255) DEFAULT NULL,
-  `description` VARCHAR(255) DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
   `unit_price` DECIMAL(13,2) DEFAULT NULL,
   `image_url` VARCHAR(255) DEFAULT NULL,
   `active` BIT DEFAULT 1,
