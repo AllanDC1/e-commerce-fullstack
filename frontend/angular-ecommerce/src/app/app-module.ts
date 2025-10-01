@@ -6,15 +6,17 @@ import { App } from './app';
 import { ProductList } from './components/product-list/product-list';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ProductService } from './services/product-service';
+import { ProductCategoryMenu } from './components/product-category-menu/product-category-menu';
 
 @NgModule({
   declarations: [
     App,
-    ProductList
+    ProductList,
+    ProductCategoryMenu
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
