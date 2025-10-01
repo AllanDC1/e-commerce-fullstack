@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="row">
 
-        @for (tempProduct of products; track $index) {
+        @for (tempProduct of products; track tempProduct.sku) {
           <div class="col-md-3">
             <div class="product-box">
               <img [src] ="tempProduct.imageUrl" alt="{{tempProduct.name}} IMAGE" class="img-responsive"/>
@@ -11,6 +11,10 @@
               <div class="price">{{ tempProduct.unitPrice | currency:'USD'}}</div>
               <a href="#" class="primary-btn">Add to cart</a>
             </div>
+          </div>
+        } @empty {
+          <div class="alert alert-warning col-md-12" role="alert">
+            No products found.
           </div>
         }
 

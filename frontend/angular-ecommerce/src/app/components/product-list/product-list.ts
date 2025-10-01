@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ProductService } from '../../services/product-service';
 import { Product } from '../../common/product';
 import { ActivatedRoute } from '@angular/router';
@@ -13,18 +13,43 @@ export class ProductList {
 
   products: Product[] = [];
   currentCategoryId: number = 1;
+  searchMode: boolean = false;
 
   constructor(private productService: ProductService,
-              private route: ActivatedRoute) {}
+              private route: ActivatedRoute,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(() => {
-      this.listProducts();
-    })
+      this.route.paramMap.subscribe(() => {
+        this.listProducts();
+      });
   }
 
   listProducts() {
 
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+
+    if (this.searchMode) {
+      this.handleSearchProducts();
+    } else {
+      this.handleListProducts();
+    }
+  }
+
+  handleSearchProducts() {
+
+    const keyword: string = this.route.snapshot.paramMap.get('keyword')!;
+
+    this.productService.searchProducts(keyword).subscribe(
+      data => {
+        console.log(data);
+        this.products = data;
+        this.cdr.markForCheck();
+      }
+    )
+  }
+
+  handleListProducts() {
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (hasCategoryId) {
@@ -36,8 +61,8 @@ export class ProductList {
     this.productService.getProductList(this.currentCategoryId).subscribe(
       data => {
         this.products = data;
-      }
-    )
+        this.cdr.markForCheck();
+    });
   }
 
 }
