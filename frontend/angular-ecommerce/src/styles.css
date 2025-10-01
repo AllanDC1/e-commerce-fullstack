@@ -83,8 +83,14 @@ h6{
     font-size:13px
 }
 
+h1 a {
+  text-decoration: none;
+  color: #555;
+}
+
 a{
-    display:inline-block
+    display:inline-block;
+    text-decoration: none;
 }
 
 a:active,a:focus,a:hover{
@@ -107,7 +113,7 @@ a,a:hover{
 .page-wrapper{
     overflow:hidden;
     background:#e5e5e5;
-    padding-bottom:8vh
+    padding-bottom:16vh
 }
 
 .page-container{
@@ -722,6 +728,10 @@ table.table.table-bordered th{
 .detail-section{
     margin-top:60px
 }
+
+.detail-img{
+  width: 30%;
+}
 /**/
 
 /*
@@ -845,7 +855,7 @@ footer ul li{
     }
      .page-wrapper{
         background:#e5e5e5;
-        padding-bottom:12vh
+        padding-bottom:16vh
     }
      .main-content{
         padding-top:50px;
